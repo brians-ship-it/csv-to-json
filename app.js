@@ -1,40 +1,7 @@
 var express = require("express"),
-    app     = express();
-    
-
-// var fs = require("fs");
-
-// var Converter = require("csvtojson").Converter;
-// //create a new converter object
-// var converter = new Converter({delimiter: "||"});
-
-// //call the fromFile function which takes in the path to the csv file, as well as a callback function
-// converter.fromFile("test.csv", function(err, result){
-//     // if an error has occurred, then handle it
-//     if(err){
-//         console.log("An error has occurred");
-//         console.log(err);
-//     } else {
-//         // create a variable called json and store the result of the conversion
-//         var json = JSON.stringify(result);
-        
-//         // log our json to verify it has worked
-//         console.log(json);
-//     }
-// })
-// // .on('done',(jsonObj)=>{
-// //     console.log('end');
-// //     console.log(jsonObj);
-// // })
-// .on("record_parsed",function(resultRow,rawRow,rowIndex){
-//     console.log('*****');
-//   console.log(resultRow); //here is your result json object
-// });
-
-
-
-var fs = require('fs');
-var parse = require('csv-parse');
+    app     = express(),
+    fs      = require('fs'),
+    parse   = require('csv-parse');
  
 var inputFile='test.csv';
 var outputFile = 'test.json';
@@ -79,11 +46,11 @@ var parser = parse({delimiter: '||', constructResult:true}, function (err, data)
 	   // if (err) throw err
 	   // console.log('Done!');
     // });
-})
-.on('done',(jsonObj) => {
-    console.log('end');
-    console.log(jsonObj);
 });
+// .on('done',(jsonObj) => {
+//     console.log('end');
+//     console.log(jsonObj);
+// });
  
 // read the inputFile, feed the contents to the parser
 fs.createReadStream(inputFile).pipe(parser);
